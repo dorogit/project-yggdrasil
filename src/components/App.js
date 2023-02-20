@@ -5,7 +5,7 @@ import { Route,Switch, BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div>
       <BrowserRouter>
         <div>
           <Switch>

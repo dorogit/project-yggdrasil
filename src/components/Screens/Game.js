@@ -3,8 +3,7 @@ import React from "react";
 class Game extends React.Component {
   render() {
     return (
-      <div>
-        hello
+      <div style={{justifyContent:'center', alignContent:'center'}}>
       </div>
     )
   }

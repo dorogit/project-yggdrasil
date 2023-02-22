@@ -1,0 +1,17 @@
+.image-container {
+  background-image: url('https://media.discordapp.net/attachments/1012398048745373697/1076917548639059988/FirstMap.png');
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+  position: relative;
+}
+
+.image-container::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 200px;
+  height: 200px;
+  clip: rect(50px, 250px, 250px, 50px);
+}

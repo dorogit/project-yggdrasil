@@ -3,10 +3,22 @@ import { useRef, useEffect } from 'react';
 const Game = () => {
   const canvasRef = useRef(null);
   const drawImage = (ctx) => {
-    const img = new Image();
-    img.src = 'https://media.discordapp.net/attachments/1012398048745373697/1077916410833022976/test-map.png?width=1026&height=1026'
-    img.onload = () => {
-      ctx.drawImage(img, 0, 0);
+    const map = new Image();
+    const player_1 = new Image();
+    map.src = require('../../assets/test-map.png')
+    player_1.src = require('../../assets/Character/character-1.png')
+    map.onload = () => {
+      ctx.drawImage(map, -600, -50)
+      ctx.drawImage(player_1,
+        0,
+        0,
+        player_1.width/8,
+        player_1.height/11,
+        810,
+        60,
+        player_1.width/8,
+        player_1.height/11
+        )
     }
   }
 
@@ -18,7 +30,7 @@ const Game = () => {
   
   return (
     <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-      <canvas ref={canvasRef} width={800} height={800} />
+      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} />
     </div>
   );
   

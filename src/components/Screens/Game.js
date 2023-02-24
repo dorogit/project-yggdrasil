@@ -1,39 +1,71 @@
 import React from "react";
-import { useRef, useEffect } from 'react';
-const Game = () => {
-  const canvasRef = useRef(null);
-  const drawImage = (ctx) => {
-    const map = new Image();
-    const player_1 = new Image();
-    map.src = require('../../assets/test-map.png')
-    player_1.src = require('../../assets/Character/character-1.png')
-    map.onload = () => {
-      ctx.drawImage(map, -600, -50)
-      ctx.drawImage(player_1,
-        0,
-        0,
-        player_1.width/8,
-        player_1.height/11,
-        810,
-        60,
-        player_1.width/8,
-        player_1.height/11
-        )
-    }
+import mapImage from '../../assets/test-map.png'
+import characterImage from '../../assets/Character/character-1.png'
+class Game extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.canvasRef = React.createRef()
+    this.mapX = -585
+    this.mapY = -50
   }
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    drawImage(ctx);
-  }, []);
-  
-  return (
-    <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-      <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} />
-    </div>
-  );
-  
+  componentDidMount() {
+    window.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case "w":
+          this.mapY +=20
+          break;
+        case "a":
+          this.mapX -=20
+          break;
+        case "s":
+          this.mapY -=20
+          break; 
+        case "d":
+          this.mapX +=20
+          break;
+        default:
+          break
+      }
+    })
+  }
+
+  render() {
+    setInterval(() => {
+
+      const drawImage = (ctx) => {
+        const map = new Image();
+        const player_1 = new Image();
+        map.src = mapImage
+        player_1.src = characterImage
+        map.onload = () => {
+          ctx.drawImage(map, this.mapX, this.mapY)
+          player_1.onload = () => {
+            ctx.drawImage(player_1,
+              0,
+              0,
+              player_1.width/8,
+              player_1.height/11,
+              1800 / 2 - player_1.width/8 / 2,
+              986 / 2 - player_1.height/11,
+              player_1.width/8,
+              player_1.height/11
+              )
+          }
+          }
+        }
+        const canvas = this.canvasRef.current
+        const ctx = canvas.getContext('2d');
+        drawImage(ctx)
+      
+    }, 1000);
+    return (
+      <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+        <canvas ref= {this.canvasRef} width={1800} height={986} />
+      </div>
+    );
+  }
 }
 
 export default Game;

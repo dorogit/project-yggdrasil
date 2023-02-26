@@ -8,8 +8,16 @@ class Game extends React.Component {
   constructor(props) {
     super(props)
     this.canvasRef = React.createRef()
-    this.mapX = -585
-    this.mapY = -50
+    this.movables = {
+      map: {
+        x:-585,
+        y:-50
+      },
+      collision: {
+        x:-585,
+        y:-50
+      }
+    }
     this.collisionArray = []
   }
 
@@ -17,16 +25,25 @@ class Game extends React.Component {
     window.addEventListener('keydown', (e) => {
       switch (e.key) {
         case "w":
-          this.mapY +=20
+          Object.entries(this.movables).forEach(([key, entry])=> {
+            entry.y += 20
+          })
+          console.log(e)
           break;
         case "a":
-          this.mapX +=20
+          Object.entries(this.movables).forEach(([key, entry])=> {
+            entry.x += 20
+          })
           break;
         case "s":
-          this.mapY -=20
+          Object.entries(this.movables).forEach(([key, entry])=> {
+            entry.y -= 20
+          })
           break; 
         case "d":
-          this.mapX -=20
+          Object.entries(this.movables).forEach(([key, entry])=> {
+            entry.x -= 20
+          })
           break;
         default:
           break
@@ -49,7 +66,7 @@ class Game extends React.Component {
         player_1.src = characterImage
         collision.src = collisionBox
         map.onload = () => {
-          ctx.drawImage(map, this.mapX, this.mapY)
+          ctx.drawImage(map, this.movables.map.x, this.movables.map.y)
           player_1.onload = () => {
             ctx.drawImage(player_1,
               0,
@@ -66,8 +83,8 @@ class Game extends React.Component {
                 if (coords === 1645) {
                   ctx.drawImage(
                     collision,
-                    (index2 * 56)-586,
-                    (index * 56)-50
+                    (index2 * 56) + this.movables.collision.x,
+                    (index * 56) + this.movables.collision.y
                   )
                 }
               })
@@ -89,15 +106,3 @@ class Game extends React.Component {
 }
 
 export default Game;
-
-//backgroundImage: `url('https://media.discordapp.net/attachments/1012398048745373697/1076917548639059988/FirstMap.png')`,
-/*
-<div style={{
-    backgroundImage:`url('https://media.discordapp.net/attachments/1012398048745373697/1076917548639059988/FirstMap.png')`,
-    height:'100vh',
-    width:'100vw',
-    backgroundSize:'cover',
-    backgroundRepeat:'no-repeat',
-    }}>
-    </div>
-*/

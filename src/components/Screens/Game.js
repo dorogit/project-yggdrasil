@@ -28,7 +28,6 @@ class Game extends React.Component {
           Object.entries(this.movables).forEach(([key, entry])=> {
             entry.y += 20
           })
-          console.log(e)
           break;
         case "a":
           Object.entries(this.movables).forEach(([key, entry])=> {
@@ -53,6 +52,13 @@ class Game extends React.Component {
       this.collisionArray.push(array.collision.slice(i,50+i))
     }
     
+  }
+
+  playerColliding(collisionX, collisionY) {
+    //900 and 493 are player's coordinates in the middle of the screen 
+    if (920 >= collisionX && collisionX>= 810 && 490>=collisionY && collisionY>=360) {
+      return true;
+    }
   }
 
   render() {
@@ -86,6 +92,9 @@ class Game extends React.Component {
                     (index2 * 56) + this.movables.collision.x,
                     (index * 56) + this.movables.collision.y
                   )
+                  if (this.playerColliding((index2 * 56) + this.movables.collision.x, (index * 56) + this.movables.collision.y) === true) {
+                    console.log('colliding')
+                  }
                 }
               })
             })
@@ -96,7 +105,7 @@ class Game extends React.Component {
         const ctx = canvas.getContext('2d');
         drawImage(ctx)
       
-    }, 5);
+    }, 17);
     return (
       <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
         <canvas ref= {this.canvasRef} width={1800} height={986} />

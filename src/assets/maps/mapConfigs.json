@@ -1,0 +1,30 @@
+{
+  "starting_map": {
+    "movables" : {
+      "map": {
+        "x":-585,
+        "y":-50
+      },
+      "collision": {
+        "x":-585,
+        "y":-50
+      }
+    },
+    "collisionNumber" : 1645,
+    "source": "../../assets/maps/test-map.png"
+  },
+  "map_2": {
+    "movables" : {
+      "map": {
+        "x":0,
+        "y":0
+      },
+      "collision": {
+        "x":0,
+        "y":0
+      }
+    },
+    "collisionNumber" : 1423,
+    "source": "../../assets/maps/map_2.png"
+  }
+}

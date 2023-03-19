@@ -1,26 +1,15 @@
 import React from "react";
-import mapImage from '../../assets/maps/test-map.png'
 import characterImageRight from '../../assets/Character/character-1.png'
 import characterImageLeft from '../../assets/Character/character-1-flip.png'
 import collisionBox from '../../assets//testing.png'
 import array from '../../assets/collision.json'
+import mapConfig from '../../assets/maps/mapConfigs.json'
 class Game extends React.Component {
 
   constructor(props) {
     super(props)
 
     this.canvasRef = React.createRef()
-
-    this.movables = {
-      map: {
-        x:-585,
-        y:-50
-      },
-      collision: {
-        x:-585,
-        y:-50
-      }
-    }
 
     this.collisionArray = []
 
@@ -33,13 +22,25 @@ class Game extends React.Component {
     }
 
     this.maps = {
-      start : mapImage,
-      current : mapImage
+      start : mapConfig.starting_map,
+      current : mapConfig.starting_map
+    }
+
+    this.movables = {
+      map: {
+        x:this.maps.current.movables.map.x,
+        y:this.maps.current.movables.map.y
+      },
+      collision: {
+        x: this.maps.current.movables.collision.x,
+        y: this.maps.current.movables.collision.y
+      }
     }
 
   }
 
   componentDidMount() {
+    console.log(this.maps.current.movables.map.x)
     window.addEventListener('keydown', (e) => {
 
       if (["w","a","s","d"].includes(e.key)) {
@@ -99,22 +100,22 @@ class Game extends React.Component {
       switch (direction) {
         case 1:
           Object.entries(this.movables).forEach(([key, entry])=> {
-            entry.y += 10
+            entry.y += 30
           })
           break;
         case 2:
           Object.entries(this.movables).forEach(([key, entry])=> {
-            entry.x += 10
+            entry.x += 30
           })
           break;
         case 3:
           Object.entries(this.movables).forEach(([key, entry])=> {
-            entry.y -= 10
+            entry.y -= 30
           })
           break;
         case 4:
           Object.entries(this.movables).forEach(([key, entry])=> {
-            entry.x -= 10
+            entry.x -= 30
           })
           break;
         default:
@@ -149,7 +150,7 @@ class Game extends React.Component {
         const map = new Image();
         const player_1 = new Image();
         const collision = new Image();
-        map.src = this.maps.current
+        map.src = this.maps.current.source
         if (this.player.direction === 'right') {
           player_1.src = characterImageRight
         } else if (this.player.direction === 'left') {
@@ -208,7 +209,7 @@ class Game extends React.Component {
         const ctx = canvas.getContext('2d');
         drawImage(ctx)
       
-    }, 5)
+    }, 10)
     
     return (
       <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>

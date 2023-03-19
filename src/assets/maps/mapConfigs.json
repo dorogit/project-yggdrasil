@@ -1,30 +1,30 @@
 {
   "starting_map": {
-    "movables" : {
+    "movables": {
       "map": {
-        "x":-585,
-        "y":-50
+        "x": -585,
+        "y": -50
       },
       "collision": {
-        "x":-585,
-        "y":-50
+        "x": -585,
+        "y": -50
       }
     },
-    "collisionNumber" : 1645,
-    "source": "../../assets/maps/test-map.png"
+    "collisionNumber": 1645,
+    "source": "https://cdn.discordapp.com/attachments/1012398048745373697/1085830098860638278/test-map.png"
   },
   "map_2": {
-    "movables" : {
+    "movables": {
       "map": {
-        "x":0,
-        "y":0
+        "x": 0,
+        "y": 0
       },
       "collision": {
-        "x":0,
-        "y":0
+        "x": 0,
+        "y": 0
       }
     },
-    "collisionNumber" : 1423,
-    "source": "../../assets/maps/map_2.png"
+    "collisionNumber": 1423,
+    "source": "https://cdn.discordapp.com/attachments/1012398048745373697/1085830134591922187/map_2.png"
   }
 }
